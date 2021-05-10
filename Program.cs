@@ -15,7 +15,7 @@ namespace AddressBookFileIO
         void DeleteAddressBook();
     }
 
-
+    //Serialization
     [Serializable]
     public class Program
     {

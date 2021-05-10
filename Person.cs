@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace AddressBookFileIO
 {
-    
-    
-     [Serializable]
+   [Serializable]
    public  class Person
     {
            
