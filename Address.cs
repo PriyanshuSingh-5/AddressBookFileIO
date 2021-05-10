@@ -349,7 +349,7 @@ namespace AddressBookFileIO
             //search by name of the person
             private Person SearchByName(string name)
             {
-                // If the list is empty
+                
                 if (contactList.Count == 0)
                     return null;
                 int numOfContactsSearched = 0;
@@ -357,7 +357,7 @@ namespace AddressBookFileIO
                 // storing the count of contacts with searched name string
                 int numOfConatctsWithNameSearched = 0;
 
-                // Search if Contacts have the given string in name
+               
                 foreach (Person contact in contactList)
                 {
                     // Incrementing the no of contacts searched

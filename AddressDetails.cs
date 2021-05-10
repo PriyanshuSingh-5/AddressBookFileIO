@@ -71,9 +71,7 @@ namespace AddressBookFileIO
             }
         }
 
-        /// <summary>
-        /// Searches the in city.
-        /// </summary>
+       //search for city
         public void SearchInCity()
         {
             // Returns no record found if address book is empty
