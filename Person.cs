@@ -9,7 +9,7 @@ namespace AddressBookFileIO
    [Serializable]
    public  class Person
     {
-           
+           //declaration
             public string firstName;
             public string lastName;
             public string address;

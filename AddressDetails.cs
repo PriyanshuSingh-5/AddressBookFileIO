@@ -31,10 +31,8 @@ namespace AddressBookFileIO
         private Dictionary<string, List<Person>> cityToCOntactMapInstance;
         private Dictionary<string, List<Person>> stateToContactMapInstance;
 
-        /// <summary>
-        /// Gets the address book.
-        /// </summary>
-        /// <returns></returns>
+       
+        //get address book
         private Address GetAddressBook()
         {
             Console.WriteLine("\nEnter name of Address Book to be accessed or to be added");
@@ -113,9 +111,7 @@ namespace AddressBookFileIO
 
         }
 
-        /// <summary>
-        /// Counts all by city.
-        /// </summary>
+        
         internal void CountAllByCity()
         {
             // Returns no record found if address book is empty
@@ -130,9 +126,7 @@ namespace AddressBookFileIO
                 Console.WriteLine("No of contacts in city {0} is {1}", keyValuePair.Key, keyValuePair.Value.Count());
         }
 
-        /// <summary>
-        /// Views all the contacts of a city.
-        /// </summary>
+       
         public void ViewAllByCity()
         {
             if (addressBookList.Count == 0)
@@ -156,9 +150,7 @@ namespace AddressBookFileIO
             cityToContactMap[cityName].ForEach(contact => contact.toString());
         }
 
-        /// <summary>
-        /// Views all the contacts of a state
-        /// </summary>
+       //view all state
         public void ViewAllByState()
         {
             if (addressBookList.Count == 0)
@@ -182,9 +174,7 @@ namespace AddressBookFileIO
             stateToContactMap[stateName].ForEach(contact => contact.toString());
         }
 
-        /// <summary>
-        /// Counts the state of all by.
-        /// </summary>
+       //search all state
         internal void CountAllByState()
         {
             // Returns no record found if address book is empty
@@ -199,9 +189,7 @@ namespace AddressBookFileIO
                 Console.WriteLine("Nunber of contacts in state {0} is {1}", keyValuePair.Key, keyValuePair.Value.Count());
         }
 
-        /// <summary>
-        /// Searches the state of the in.
-        /// </summary>
+       //Search for state
         public void SearchInState()
         {
             // Returns no record found if address book is empty
@@ -244,11 +232,7 @@ namespace AddressBookFileIO
             searchResult.ForEach(contact => contact.toString());
         }
 
-
-
-        /// <summary>
-        /// Deletes the address book.
-        /// </summary>
+        //Delete address book
         public void DeleteAddressBook()
         {
             // Returns no record found if address book is empty
@@ -283,9 +267,7 @@ namespace AddressBookFileIO
             }
         }
 
-        /// <summary>
-        /// Views all address books.
-        /// </summary>
+        //view all address book
         public void ViewAllAddressBooks()
         {
             // Returns no record found if address book is empty
@@ -302,9 +284,7 @@ namespace AddressBookFileIO
             logger.Info("User viewd all AddressBook names");
         }
 
-        /// <summary>
-        /// Adds the or access address book.
-        /// </summary>
+      //add or access addressbook
         public void AddOrAccessAddressBook()
         {
             // To get the name of the addressbook
@@ -365,11 +345,7 @@ namespace AddressBookFileIO
             }
         }
 
-        /// <summary>
-        /// Adds to city dictionary.
-        /// </summary>
-        /// <param name="cityName">Name of the city.</param>
-        /// <param name="contact">The contact.</param>
+        //add city
         public static void AddToCityDictionary(string cityName, Person contact)
         {
             // Check if the map already has city key
@@ -380,11 +356,7 @@ namespace AddressBookFileIO
             cityToContactMap[cityName].Add(contact);
         }
 
-        /// <summary>
-        /// Adds to state dictionary.
-        /// </summary>
-        /// <param name="stateName">Name of the state.</param>
-        /// <param name="contact">The contact.</param>
+        //add contact to dictionary
         public static void AddToStateDictionary(string stateName, Person contact)
         {
             // Check if the map already has state key
@@ -393,6 +365,55 @@ namespace AddressBookFileIO
 
             // Add the contact to list of respective city map
             stateToContactMap[stateName].Add(contact);
+        }
+
+      
+        //get from file
+        public static AddressDetails GetFromFile()
+        {
+            FileStream stream;
+            string path = @"C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\Contact.txt";
+            try
+            {
+                // Open the specified path
+                // If path is not found then it throws file not found exception
+                using (stream = new FileStream(path, FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    // Deserialize the data from file
+                    // If stream is null then it throws Serialization exception
+                    AddressDetails addressBookDetails = (AddressDetails)formatter.Deserialize(stream);
+
+                    // Copy the details of instance variables to static
+                    cityToContactMap = addressBookDetails.cityToCOntactMapInstance;
+                    stateToContactMap = addressBookDetails.stateToContactMapInstance;
+                    return addressBookDetails;
+                };
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("file not found");
+                return new AddressDetails();
+            }
+            catch (SerializationException)
+            {
+                Console.WriteLine("No previous records");
+                return new AddressDetails();
+            }
+        }
+
+        //write to file
+        public void WriteToFile()
+        {
+            string path = @"C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\Contact.txt";
+            FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            // Copy the details of static variables to instance to serialize them
+            cityToCOntactMapInstance = cityToContactMap;
+            stateToContactMapInstance = stateToContactMap;
+            formatter.Serialize(stream, this.MemberwiseClone());
         }
     }
 }

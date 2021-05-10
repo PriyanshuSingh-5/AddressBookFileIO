@@ -290,7 +290,7 @@ namespace AddressBookFileIO
             // Search for the contact
             Person contact = SearchByName(name);
 
-            // If contact doesnt exist
+           
             if (contact == null)
             {
                 Console.WriteLine("No record found");
