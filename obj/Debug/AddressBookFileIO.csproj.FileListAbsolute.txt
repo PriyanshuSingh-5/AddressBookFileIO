@@ -1,0 +1,10 @@
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\bin\Debug\AddressBookFileIO.exe.config
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\bin\Debug\AddressBookFileIO.exe
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\bin\Debug\AddressBookFileIO.pdb
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\bin\Debug\NLog.dll
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\bin\Debug\NLog.xml
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\obj\Debug\AddressBookFileIO.csprojAssemblyReference.cache
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\obj\Debug\AddressBookFileIO.csproj.CoreCompileInputs.cache
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\obj\Debug\AddressBookFileIO.csproj.CopyComplete
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\obj\Debug\AddressBookFileIO.exe
+C:\Users\K.R.DHASHNIGA\source\repos\AddressBookFileIO\AddressBookFileIO\obj\Debug\AddressBookFileIO.pdb
