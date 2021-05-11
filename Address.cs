@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NLog;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +35,7 @@ namespace AddressBookFileIO
 
         // Object initialisation
         [NonSerialized]
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+       
         public List<Person> contactList = new List<Person>();
 
         //for storing name of address book
@@ -88,7 +87,7 @@ namespace AddressBookFileIO
             while (addNewContact.Equals(contactList))
             {
                 Console.WriteLine("contact already exists");
-                logger.Error("User tried to create a duplicate of contact");
+               
 
                 // Giving option to user to re enter or to exit
                 Console.WriteLine("Type Y to enter new name or any other key to exit");
@@ -130,8 +129,7 @@ namespace AddressBookFileIO
             }
             Console.WriteLine("\nEnter the name of candidate to get Details");
             string name = Console.ReadLine().ToLower();
-            logger.Info("User searched for a contact " + name);
-
+           
             // Search the contact by name
             Person contact = SearchByName(name);
 
@@ -161,7 +159,7 @@ namespace AddressBookFileIO
             // Input the name to be updated
             Console.WriteLine("\nEnter the name of candidate to be updated");
             string name = Console.ReadLine();
-            logger.Info("User tried to update contact" + name);
+            
 
             // Search the name
             Person contact = SearchByName(name);
@@ -268,7 +266,7 @@ namespace AddressBookFileIO
                     Console.WriteLine("Invalid Entry");
                     return;
             }
-            logger.Info("User updated contact");
+            
             Console.WriteLine("\nUpdate Successful");
         }
 
@@ -285,7 +283,7 @@ namespace AddressBookFileIO
             // Input the name of the contact to be removed
             Console.WriteLine("\nEnter the name of contact to be removed");
             string name = Console.ReadLine().ToLower();
-            logger.Info("User requested to remove contact " + name);
+           
 
             // Search for the contact
             Person contact = SearchByName(name);
@@ -310,11 +308,10 @@ namespace AddressBookFileIO
                     AddressDetails.cityToContactMap[contact.city].Remove(contact);
                     AddressDetails.stateToContactMap[contact.state].Remove(contact);
                     Console.WriteLine("Contact deleted");
-                    logger.Info("User removed the contact");
+                   
                     break;
                 default:
                     Console.WriteLine("Deletion aborted");
-                    logger.Info("User aborted the process");
                     break;
             }
         }
@@ -328,7 +325,7 @@ namespace AddressBookFileIO
                 Console.WriteLine("\nNo saved contacts");
                 return;
             }
-            logger.Info("User viewd all contacts");
+            
             List<Person> listForSorting = null;
 
             // Get the order of contacts and sort accordingly
@@ -370,7 +367,6 @@ namespace AddressBookFileIO
                 // If a part of contact name matches then we would ask them to enter accurately
                 if ((contact.firstName + " " + contact.lastName).Contains(name))
                 {
-                    logger.Error("Multiple contacts exists with given name");
 
                     // num of contacts having search string
                     numOfConatctsWithNameSearched++;

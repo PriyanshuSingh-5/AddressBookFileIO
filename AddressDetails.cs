@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using NLog;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace AddressBookFileIO
     class AddressDetails
     {
         [NonSerialized]
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        
         string nameOfAddressBook;
 
         // Constants
@@ -42,12 +41,11 @@ namespace AddressBookFileIO
             if (addressBookList.ContainsKey(nameOfAddressBook))
             {
                 Console.WriteLine("\nAddressBook Identified");
-                logger.Info("Address book " + nameOfAddressBook + " is accessed by user");
                 return addressBookList[nameOfAddressBook];
             }
 
             // Offer to create a address book if not found in dictionary
-            logger.Warn("AddressBook " + nameOfAddressBook + " not found");
+            
             Console.WriteLine("\nAddress book not found. Type y to create a new address book or E to abort");
 
             // If user want to create a new address book
@@ -56,7 +54,6 @@ namespace AddressBookFileIO
                 Address addressBook = new Address(nameOfAddressBook);
                 addressBookList.Add(nameOfAddressBook, addressBook);
                 Console.WriteLine("\nNew AddressBook Created");
-                logger.Info("New address book created with name : " + nameOfAddressBook);
                 return addressBookList[nameOfAddressBook];
             }
 
@@ -64,7 +61,6 @@ namespace AddressBookFileIO
             else
             {
                 Console.WriteLine("\nAction Aborted");
-                logger.Info("User aborted the operation to create new Address book with name : " + nameOfAddressBook);
                 return null;
             }
         }
@@ -259,7 +255,7 @@ namespace AddressBookFileIO
                 foreach (KeyValuePair<string, List<Person>> keyValuePair in stateToContactMap)
                     stateToContactMap[keyValuePair.Key].RemoveAll(contact => contact.nameOfAddressBook == addressBookName);
                 Console.WriteLine("Address book deleted successfully");
-                logger.Info("User deleted the AddressBook " + nameOfAddressBook);
+                
             }
             catch
             {
@@ -281,7 +277,7 @@ namespace AddressBookFileIO
             Console.WriteLine("\nThe namesof address books available are :");
             foreach (KeyValuePair<string, Address> keyValuePair in addressBookList)
                 Console.WriteLine(keyValuePair.Key);
-            logger.Info("User viewd all AddressBook names");
+            
         }
 
       //add or access addressbook
@@ -339,7 +335,7 @@ namespace AddressBookFileIO
                 // If not equal to y  then exit
                 if (!(Console.ReadLine().ToLower() == "y"))
                 {
-                    logger.Debug("User exited the address book " + nameOfAddressBook);
+                    Console.WriteLine("User exited the address book " + nameOfAddressBook);
                     return;
                 }
             }
